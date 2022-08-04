@@ -1,2 +1,5 @@
 - Getting started
-    - [Install]()
+    - [Before start](/before_start.md)
+    - [Install](/install.md)
+    - [Terminology](/terminology.md)
+    - [First time launch](/launch_first.md)

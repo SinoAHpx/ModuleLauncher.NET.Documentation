@@ -1,0 +1,31 @@
+# Terminology
+
+- `MinecraftEntry`: most important concept in this library, it contains foundamental information of a Minecraft version, which is:
+    - `Json`: deserialized entity of Minecraft json file, have some basic information.
+    - `Tree`: tree structure of a Minecraft, like where is the Jar file located, library directory, assets directory, etc. Here is a example of this tree hierarchy:
+        - `.minecraft`
+            - `assets`
+                - `indexes`
+            - `librares`
+            - `mods`
+            - `resourcepacks`
+            - `texturepacks`(for legacy Minecrafts)
+            - `saves`
+            - `versions`
+                - `1.19`
+                    - `natives`
+                    - `1.19.jar`
+                    - `1.19.json`
+- `MinecraftResolver`: another important stuff in the library, you an initiaize a `MinecraftResolver` instance with a path of .minecraft. Main character of this class is being factory that produces `MinecraftEntry` with `Minecraft id`.
+- `Minecraft id`: in the example tree above, `1.19` is the `Minecraft id`. once you have a `Minecraft id`, you can grab a `MinecraftEntry` with it by using `MinecraftResolver`.
+- `LibraryResolver`: get a list of `LibraryEntry`, represent the files in `libraries` directory which is Minecraft's necessary. 
+- `LibraryEntry`: describe a library file, for detailed:
+    - `File`: a `FileInfo` object of the library file.
+    - `IsNative`: indicating if the entry is a native library, which needs to be extacted (of course you don't have to do it manually).
+    - `Type`: what type of Minecraft this entry belongs to, there's might be different kind of libraries in a lis since a Forge or Fabric json of Minecraft missing some libraries.
+    - `RelativeUrl`: a relative url of the library, you can combine it manually to get download url.
+- `AssetsResolver`: get a list of `AssetEntry`, same as above, it represent files in `assets` directory.
+- `AssetEntry`: almost same as `LibraryEntry`, difference is:
+    - `IsLegacy`: indicating this entry is for legacy Minecrafts like `1.7.2`
+    - `MapToResource`: indicating this entry should be mapped to `.minecraft/resources`, only for Minecrafts prior `1.6`
+    - `Hash`: sha1 hash of the entry, in newer versions of Minecraft, this is the file name of an asset
