@@ -11,5 +11,5 @@
 - Resources
     - [LibrariesResolver](/libraries_resolver.md)
     - [AssetsResolver](/assets_resolver.md)
-- Misc
-    - [Utils](/utils.md)
+- Utils
+    - [MojangApiUtils](/mojang_api_utils.md)
