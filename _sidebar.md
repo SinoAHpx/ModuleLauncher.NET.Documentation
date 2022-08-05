@@ -3,3 +3,13 @@
     - [Install](/install.md)
     - [Terminology](/terminology.md)
     - [First time launch](/launch_first.md)
+- Authentication
+    - [MicrosoftAuthenticator](/ms_authenticator.md)
+    - [OfflineAuthenticator](/offline_authenticator.md)
+- Launch
+    - [Launcher](/launcher.md)
+- Resources
+    - [LibrariesResolver](/libraries_resolver.md)
+    - [AssetsResolver](/assets_resolver.md)
+- Misc
+    - [Utils](/utils.md)
