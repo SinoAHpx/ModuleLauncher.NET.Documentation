@@ -1,0 +1,22 @@
+# Terminology
+
+- `MinecraftEntry`: most important concept in this library, it contains foundamental information of a Minecraft version, which is:
+    - `Json`: deserialized entity of Minecraft json file, have some basic information.
+    - `Tree`: tree structure of a Minecraft, like where is the Jar file located, library directory, assets directory, etc. Here is a example of this tree hierarchy:
+        - `.minecraft`
+            - `assets`
+                - `indexes`
+            - `librares`
+            - `mods`
+            - `resourcepacks`
+            - `texturepacks`(for legacy Minecrafts)
+            - `saves`
+            - `versions`
+                - `1.19`
+                    - `natives`
+                    - `1.19.jar`
+                    - `1.19.json`
+- `MinecraftResolver`: another important stuff in the library, you an initiaize a `MinecraftResolver` instance with a path of .minecraft. Main character of this class is being factory that produces `MinecraftEntry` with `Minecraft id`.
+- `Minecraft id`: in the example tree above, `1.19` is the `Minecraft id`. once you have a `Minecraft id`, you can grab a `MinecraftEntry` with it by using `MinecraftResolver`.
+- `LibraryResolver`: get a list of `LibraryEntry`, represent the files in `libraries` directory which is Minecraft's necessary. 
+- `AssetsResolver`: get a list of `AssetEntry`, same as above, it represent files in `assets` directory.
