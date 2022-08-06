@@ -1,40 +1,43 @@
 # AssetsResolver
 
-Same as `LibrariesResovler`, the `AssetsResolver` helps you getting minecraft assets file.
+ 类似于`LibrariesResovler`， `AssetsResolver` 帮助你获得 Minecraft 资产文件。
 
-## Get assets
+## 获取Assets
 
-Use `AssetsResolver`:
+`AssetsResolver` 用法：
+
 
 ```cs
 var assets = AssetsResolver.GetAssets(minecraft);
 ```
 
-Or use asynchronous one, which will automatically download missing asset index file:
+或者使用异步方法，它将自动下载缺少的资产索引文件：
+
 
 ```cs
 var assets = await AssetsResolver.GetAssetsAsync(minecraft);
 ```
 
-?> `AssetsResolver` also have extension methods on `MinecraftEntry`
+?> `AssetsResolver` 对 `MinecraftEntry` 有上述扩展方法。
 
-## Consume
+## 用法
 
-This is a single `AssetEntry`:
+单个 `AssetEntry` 实例的属性包括：
 
-- `File`: a `FileInfo` object of the assets file.
-- `RelativeUrl`: a relative url of the asset, you can combine it manually to get download url.
-- `IsLegacy`: indicating this entry is for legacy Minecrafts like `1.7.2`.
-- `MapToResource`: indicating this entry should be mapped to `.minecraft/resources`, only for Minecrafts prior `1.6`.
-- `Hash`: sha1 hash of the entry, in newer versions of Minecraft, this is the file name of an asset.
+- `File`： `FileInfo` assets文件的对象。
+- `RelativeUrl`：assets的相对 url，你可以手动组合它以获得下载 url。
+- `IsLegacy`：表示此条目用于旧版 Minecraft（例如`1.7.2`） 。
+- `MapToResource`：表示此条目应映射到 `.minecraft/resources` ，仅适用于之前的 Minecrafts `1.6`。
+- `Hash`：sha1 条目的哈希值，在较新版本的 Minecraft 中，这是资源的文件名。
 
-You can grab download url:
+你可以抓取下载网址：
 
 ```cs
 var url = assetEntry.GetDownloadUrl();
 ```
 
-Or specify other download source:
+或指定其他下载源：
+
 
 ```cs
 var url = assetEntry.GetDownloadUrl(DownloadSource.Bmcl);

@@ -6,7 +6,7 @@
         - `.minecraft`
             - `assets`
                 - `indexes`
-            - `librares`
+            - `libraries`
             - `mods`
             - `resourcepacks`
             - `texturepacks`(for legacy Minecrafts)
@@ -16,7 +16,7 @@
                     - `natives`
                     - `1.19.jar`
                     - `1.19.json`
-- `MinecraftResolver`: another important stuff in the library, you an initiaize a `MinecraftResolver` instance with a path of .minecraft. Main character of this class is being factory that produces `MinecraftEntry` with `Minecraft id`.
-- `Minecraft id`: in the example tree above, `1.19` is the `Minecraft id`. once you have a `Minecraft id`, you can grab a `MinecraftEntry` with it by using `MinecraftResolver`.
+- `MinecraftResolver`: another important stuff in the library, you an initiaize a `MinecraftResolver` instance with a path of .minecraft. Main character of this class is being factory that produces `MinecraftEntry` with `Minecraft ID`.
+- `Minecraft ID`: in the example tree above, `1.19` is the `Minecraft ID`. once you have a `Minecraft ID`, you can grab a `MinecraftEntry` with it by using `MinecraftResolver`.
 - `LibraryResolver`: get a list of `LibraryEntry`, represent the files in `libraries` directory which is Minecraft's necessary. 
 - `AssetsResolver`: get a list of `AssetEntry`, same as above, it represent files in `assets` directory.

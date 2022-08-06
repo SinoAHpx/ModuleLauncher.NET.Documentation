@@ -1,22 +1,22 @@
-# Terminology
+# 术语表
 
-- `MinecraftEntry`: most important concept in this library, it contains foundamental information of a Minecraft version, which is:
-    - `Json`: deserialized entity of Minecraft json file, have some basic information.
-    - `Tree`: tree structure of a Minecraft, like where is the Jar file located, library directory, assets directory, etc. Here is a example of this tree hierarchy:
+- `MinecraftEntry`：这个库中最重要的概念，它包含了 Minecraft 版本的基本信息：
+    - `Json`：Minecraft Json 文件的反序列化实例，有一些基本信息。
+    - `Tree`：Minecraft 的树形结构，例如 Jar 文件的位置、库目录、资源目录等。下面是此树形层次结构的示例：
         - `.minecraft`
             - `assets`
                 - `indexes`
-            - `librares`
+            - `libraries`
             - `mods`
             - `resourcepacks`
-            - `texturepacks`(for legacy Minecrafts)
+            - `texturepacks`（适用于旧版 Minecraft）
             - `saves`
-            - `versions`
+            - `versions`（以一个典型版本1.19为例）
                 - `1.19`
                     - `natives`
                     - `1.19.jar`
                     - `1.19.json`
-- `MinecraftResolver`: another important stuff in the library, you an initiaize a `MinecraftResolver` instance with a path of .minecraft. Main character of this class is being factory that produces `MinecraftEntry` with `Minecraft id`.
-- `Minecraft id`: in the example tree above, `1.19` is the `Minecraft id`. once you have a `Minecraft id`, you can grab a `MinecraftEntry` with it by using `MinecraftResolver`.
-- `LibraryResolver`: get a list of `LibraryEntry`, represent the files in `libraries` directory which is Minecraft's necessary. 
-- `AssetsResolver`: get a list of `AssetEntry`, same as above, it represent files in `assets` directory.
+- `MinecraftResolver`：库中的另一个重要内容，你可以 `MinecraftResolver` 使用..minecraft 路径初始化实例。这个类扮演的主要角色是用 Minecraft ID 创建 `MinecraftEntry` 的工厂。
+- `Minecraft ID`：在上面的示例树中， `1.19` 是 `Minecraft ID`。一旦你有 `Minecraft ID` 了，你就可以 `MinecraftEntry` 使用来抓取 `MinecraftResolver`。
+- `LibraryResolver`：获取一个列表 `LibraryEntry`，表示目录中的文件 `libraries`，这是 Minecraft 的必要。
+- `AssetsResolver`：获取一个列表 `AssetEntry`，和上面一样，它代表目录中文件 `assets`。

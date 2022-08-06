@@ -30,7 +30,7 @@ var source = "mcbbs".ResolveDownloadSource();
 
 A single `RemoteMinecraftEntry`:
 
-- Id: Minecraft id.
+- Id: Minecraft ID.
 - Url: url of Minecraft json file.
 - ReleaseTime: when does this Minecraft be released.
 - Sha1: sha1 hash of Minecraft json.
@@ -74,7 +74,7 @@ var minecraftEntry = await remoteMinecraftEntry.ResolveLocalEntryAsync(minecraft
 
 ### GetRemoteMinecraftAndToLocalAsync
 
-It's an extension method on `MinecraftResovler`, accepts a string Minecraft id. As method signature said, it gets `RemoteMinecraftEntry` and invoke `ResolveLocalEntryAsync`.
+It's an extension method on `MinecraftResovler`, accepts a string Minecraft ID. As method signature said, it gets `RemoteMinecraftEntry` and invoke `ResolveLocalEntryAsync`.
 
 ```cs
 var minecraft = await mcResolver.GetRemoteMinecraftAndToLocalAsync("id");

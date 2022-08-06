@@ -1,12 +1,15 @@
-# DownloaderUtils
+# DownloadUtils
 
-`DownloadUtils` does not provide download service.
+`DownloadUtils` 不实现下载功能。
 
-## Get download url
+## 获取下载 url
 
-Get download url, this is main usage of this class.
+获取下载网址，即该类的主要用法。
 
-All of `MinecraftEntry`(vanilla only), `LibraryEntry`, `AssetEntry` can invoke an extension method: `GetDownloadUrl`, which can accept `DownloadSource` enum to indicate download mirrors.
+所有的 `MinecraftEntry`（仅限 vanilla）、 `LibraryEntry`、 `AssetEntry` 都可以调用扩展方法`GetDownloadUrl`。
+
+它可以接受传入的 `DownloadSource` 枚举来指定下载镜像。
+
 
 ```cs
 var mcUrl = minecraftEntry.GetDownloadUrl(DownloadSource.Bmcl);
@@ -14,9 +17,10 @@ var libUrl = libraryEntry.GetDownloadUrl();
 var assetUrl = assetEntry.GetDownloadUrl();
 ```
 
-### ResolveDownloadSource
+### 解析下载源
 
-In a GUI application, this might be convenient, this method convert a string value like "default" to `DownloadSource` enum:
+这可能对于GUI程序很方便，此方法将字符串值（如“default”）转换为 `DownloadSource` 枚举：
+
 
 ```cs
 var source = "bmcl".ResolveDownloadSource();
@@ -24,33 +28,34 @@ var source = "default".ResolveDownloadSource();
 var source = "mcbbs".ResolveDownloadSource();
 ```
 
-## Get remote Miencraft
+## 获取远程 Miencraft
 
-`RemoteMinecraftEntry` is contrast to `MinecraftEntry`, it represents an entry in the [launcher metadata manifest](http://launchermeta.mojang.com/mc/game/version_manifest_v2.json).
+`RemoteMinecraftEntry` 与 `MinecraftEntry` 相反，它表示 [启动程序元数据清单](http://launchermeta.mojang.com/mc/game/version_manifest_v2.json)。
 
-A single `RemoteMinecraftEntry`:
+单个 `RemoteMinecraftEntry`：
 
-- Id: Minecraft id.
-- Url: url of Minecraft json file.
-- ReleaseTime: when does this Minecraft be released.
-- Sha1: sha1 hash of Minecraft json.
-- Type: Minecraft json type, it's an enum, can be `Release`, `Snapshot`, `OldAlpha` and `OldBeta`.
+- Id：指示Minecraft ID。
+- Url：指示Minecraft Json文件的 URL。
+- ReleaseTime：指示Minecraft发布时间。
+- Sha1：指示Minecraft Json的sha1哈希值。
+- Type：指示Minecraft Json 类型。它是一个枚举，可以是 `Release`， `Snapshot`， `OldAlpha` 和 `OldBeta`。
 
-Get all of them:
+获取所有这些文件：
 
 ```cs
 var remoteMinecrafts = await DownloaderUtils.GetRemoteMinecraftsAsync();
 ```
 
-?> when you firstly invoked `GetRemoteMinecraftsAsync`, result will be stored in a cache variable to improve performance, you can refresh the cache variable by invoking `RefreshRemoteMinecraftsCacheAsync`.
+?> 当你第一次调用 `GetRemoteMinecraftsAsync` 时，结果会储存在缓存中以改善效能，你可以调用 `RefreshRemoteMinecraftsCacheAsync` 来刷新缓存。
 
-Get single one by id:
+给定 ID 以获取单个实例：
 
 ```cs
 var remoteMinecraft = await DownloaderUtils.GetRemoteMinecraftAsync("1.19");
 ```
 
-Or you can filter remote Minecrafts to specified types:
+或者你可以以指定地类型筛选远程 Minecraft：
+
 
 ```cs
 var remoteMinecrafts = await DownloaderUtils
@@ -58,15 +63,16 @@ var remoteMinecrafts = await DownloaderUtils
     .FilterAsync(MinecraftJsonType.OldBeta | MinecraftJsonType.OldAlpha);
 ```
 
-?> `FilterAsync` also has a synchronous overload, which is an extension method of `List<RemoteMinecraftEntry>` instead of `Task<List<RemoteMinecraftEntry>>`.
+?> `FilterAsync` 也有同步的重载方法，这是 `List<RemoteMinecraftEntry>` 的扩展方法，而不是 `Task<List<RemoteMinecraftEntry>>` 的。
 
-## Convert remote Minecraft to local Minecraft
+## 将远程 Minecraft 转换为本地 Minecraft
 
-Local Minecraft is represented by `MinecraftEntry`, so essentially it's a convert from `RemoteMinecraftEntry` to `MinecraftEntry`. The library provides two ways to do this.
+本地 Minecraft 由 `MinecraftEntry` 描述，所以本质上它是从 `RemoteMinecraftEntry` 转换至 `MinecraftEntry`。该库提供了两种方法来完成此操作。
 
 ### ResolveLocalEntryAsync
 
-You need a `RemoteMinecraftEntry` and a `MinecraftResolver` instance to invoke this method:
+你需要各属 `RemoteMinecraftEntry`、`MinecraftResolver` 的两个实例来调用这个方法：
+
 
 ```cs
 var minecraftEntry = await remoteMinecraftEntry.ResolveLocalEntryAsync(minecraftResolver);
@@ -74,17 +80,19 @@ var minecraftEntry = await remoteMinecraftEntry.ResolveLocalEntryAsync(minecraft
 
 ### GetRemoteMinecraftAndToLocalAsync
 
-It's an extension method on `MinecraftResovler`, accepts a string Minecraft id. As method signature said, it gets `RemoteMinecraftEntry` and invoke `ResolveLocalEntryAsync`.
+这是一个 `MinecraftResovler` 的扩展方法，接受一个字符串 Minecraft ID。正如方法签名，它获取 `RemoteMinecraftEntry` 并调用 `ResolveLocalEntryAsync`。
+
 
 ```cs
 var minecraft = await mcResolver.GetRemoteMinecraftAndToLocalAsync("id");
 ```
 
-## Validate if a xxEntry needs to re-download
+## 验证 xxEntry 是否需要重新下载
 
-All resouces of vanilla Minecraft provides sha1 checksum, which can be used to check if downloaded file if corrupted, so that you can perform re-download.
+vanilla Minecraft 的所有资源都提供 sha1 校验，它可以用来检查下载的文件是否损坏，以便你可以执行重新下载。
 
-Same as `GetDownloadUrl`, there's an extension method `ValidateChecksum` apply for all the resource entries:
+类似于 `GetDownloadUrl`，有一个扩展方法 `ValidateChecksum` 适用于所有资源条目：
+
 
 ```cs
 minecraftEntry.ValidateChecksum();
@@ -92,4 +100,4 @@ assetEntry.ValidateChecksum();
 libraryEntry.ValidateChecksum();
 ```
 
-If return value if true, means corresponding file is fine, doesn't need to re-download. Otherwise, means it might be corrupted, you should download it again.
+如果返回值为 true，则表示对应文件没有问题，不需要重新下载；否则，意味着它可能已损坏，你应该重新下载它。

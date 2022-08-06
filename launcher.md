@@ -58,7 +58,7 @@ This way is much simpler than above one, but correspondingly may missing some fe
 
 ```cs
 var minecraftResolver = new MinecraftResolver(@".minecraft direcotry");
-var minecraft = minecraftResolver.GetMinecraft("Minecraft id");
+var minecraft = minecraftResolver.GetMinecraft("Minecraft ID");
 
 var process = await minecraft
     .WithAuthentication("AHpx")

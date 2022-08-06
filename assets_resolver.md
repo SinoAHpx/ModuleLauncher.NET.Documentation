@@ -16,7 +16,7 @@ Or use asynchronous one, which will automatically download missing asset index f
 var assets = await AssetsResolver.GetAssetsAsync(minecraft);
 ```
 
-?> `AssetsResolver` also have extension methods on `MinecraftEntry`
+?> `AssetsResolver` also have extension methods on `MinecraftEntry`.
 
 ## Consume
 

@@ -1,50 +1,58 @@
 # SkinUtils
 
-Manage your skin.
-All methods in this class:
-- **Need access toekn**.
-- Return the new Minecraft profile after changing.
-- Is asynchronous method.
-- Should be carefully used.
+管理皮肤。
 
-If method can accept a parameter `skinVariant`, the parameter is an enum of two value: `Classic` (Steve style) and `Slim` (Alex style).
+此类中的所有方法：
+- **需要Access**；
+- 执行后返回新的 Minecraft 配置文件；
+- 是异步方法；
+- 应谨慎使用。
 
-## Change skin by skin file url
+如果方法可以接受一个参数 `skinVariant`，一般该参数是对两个值的枚举：`Classic` （Steve 风格）和 `Slim`（Alex 风格）。
 
-Change skin, passing the url of skin file. *Not recommended, very a chance to be failed.*
+## 按外观文件 url 更改外观
+
+更改皮肤，传递皮肤文件的 url。
+
+*不推荐，很有可能失败。*
+
 
 ```cs
 var rofile = await SkinUtils.ChangeSkinAsync("access token", "file url", SkinVariant.Slim);
 ```
 
-## Change skin by local file
+## 按本地文件更改外观
+
 
 ```cs
 var profile = await SkinUtils.ChangeSkinAsync("access token", new FileInfo("skin path"), SkinVariant.Classic);
 ```
 
-## Reset skin
+## 重置外观
 
-Just remove currently active skin and reset to Steve.
+只需删除当前活动的皮肤并重置为 Steve。
+
 
 ```cs
 var profile = await SkinUtils.ResetSkinAsync("access token");
 ```
 
-## Hide cape
+## 隐藏斗篷
 
-Hide if currently active skin have a cape.
+如果当前活动蒙皮具有斗篷，则隐藏。
+
 
 ```cs
 var profile = await SkinUtils.HideCapeAsync("access token");
 ```
 
-## Show cape
+## 展示披肩
 
-Show hidden cape if available.
+显示隐藏斗篷（如果有）。
+
 
 ```cs
 var profile = await SkinUtils.ShowCapeAsync("access token", "cape id");
 ```
 
-?> you can grab cape id by getting profile.
+?> 你可以通过侧写来获取斗篷 id。

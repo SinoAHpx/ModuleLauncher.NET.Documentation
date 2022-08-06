@@ -1,15 +1,17 @@
-# Install
+# 安装
 
-It's too simple that I don't even know what to say here.
+如此简单的一步，我想不用多说了。
 
 ## Visual Studio
 
-Select `Nuget package manager` in your project, and search for `ModuleLauncher.Re`, and hit the `install` button, so now you have installed ModuleLauncher.Re.
+在你的项目的 `Nuget包管理器` 中搜索 `ModuleLauncher.Re` 并点击 `安装` 按钮。
 
 ## .NET CLI
 
-Open your terminal, and type:
+打开终端，然后键入：
 
 ```
 dotnet add package ModuleLauncher.Re
 ```
+
+并回车。

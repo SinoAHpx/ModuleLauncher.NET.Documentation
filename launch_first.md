@@ -8,7 +8,7 @@ As we said in [Terminology](/terminology.md), `MinecraftEntry` is very import, s
 
 ```cs
 var minecraftResolver = new MinecraftResolver(@".minecraft direcotry");
-var minecraft = minecraftResolver.GetMinecraft("Minecraft id");
+var minecraft = minecraftResolver.GetMinecraft("Minecraft ID");
 ```
 
 You may using namespace: 

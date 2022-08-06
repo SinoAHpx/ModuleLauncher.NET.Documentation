@@ -1,8 +1,9 @@
-# OfflineAuthenticator
+# 离线身份验证器
 
-Nothing much to say here, usually most of time this class is useless, you can simply give assign a string to a variable typed as `AuthenticateResult`.
+这里没啥可说的，通常这个类是不用的，你可以简单地用表示用户名的字符串实例化本类。
 
 ## Authenticate
+
 
 ```cs
 var authenticator =  new OfflineAuthenticator("Name");

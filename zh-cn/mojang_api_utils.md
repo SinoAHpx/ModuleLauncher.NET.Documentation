@@ -1,67 +1,70 @@
 # MojangApiUtils
 
-This utils class following [wiki.vg](https://wiki.vg/Mojang_API) to implement, yet some of APIs have not been covered.
+本实用类遵循 [wiki.vg](https://wiki.vg/Mojang_API) 来实现，但是部分 API 的实现还没有被涵盖在内。
 
-All methods in this class is static.
+此类所有方法均是静态的。
 
-## Get UUID by name
+## 按名称获取 UUID
 
-You can get player's uuid by their name (if specified player does not exist, an exception will be thrown):
-```cs
-var uuid = await MojangApiUtils.GetUuidByUsernameAsync("name");
-```
-
-Or you can get multiple uuids one time:
+你可以通过玩家的名字获取他们的 UUID（如果指定的玩家不存在，将抛出异常）：
 
 ```cs
-var uuids = await MojangApiUtils.GetUuidsByUsernamesAsync("name1", "name2");
+var UUID = await MojangApiUtils.GetUuidByUsernameAsync("name");
 ```
 
-?> parameters of `GetUuidsByUsernamesAsync` can be both `IEnumberable<string>` and `params string[]`
+或者，你可以一次获得多个 UUID：
 
-## Get name history by uuid
-
-Needs no authentication, you can grab player's name history by their uuid:
 
 ```cs
-var history = await MojangApiUtils.GetNameHistoryByUuidAsync("uuid");
+var UUIDs = await MojangApiUtils.GetUuidsByUsernamesAsync("name1", "name2");
 ```
 
-?> return value of `GetNameHistoryByUuidAsync` is a tuple, which item1 is name, item2 is when changed to this name.
+?> `GetUuidsByUsernamesAsync` 的参数，可以是 `IEnumberable<string>` 也可以是 `params string[]`
 
-## Get profile by uuid
+## 按 UUID 获取名称历史记录
 
-A player's profile contains their username, uuid and account assets(skins and capes). You can grab it by uuid without authentication:
+无需身份验证，你可以通过玩家的 UUID 获取其姓名历史记录：
+
 
 ```cs
-var profile = await MojangApiUtils.GetProfileByUuidAsync("uuid");
+var history = await MojangApiUtils.GetNameHistoryByUuidAsync("UUID");
 ```
 
-## Get profile name change information
+?> `GetNameHistoryByUuidAsync` 的返回值是一个元组，其中 item1 是名称，item2 是更改为该名称的时间。
 
-**Needs access token.**
+## 按 UUID 获取配置文件
 
-This method returns a tuple, item1 is when's profile name changed, item2 is when's profile created, item2 is whether allowed to change name currently.
+玩家的个人资料包含他们的用户名、UUID 和帐户资产（皮肤和披风）。你可以通过 UUID 获取它而无需身份验证：
+
+```cs
+var profile = await MojangApiUtils.GetProfileByUuidAsync("UUID");
+```
+
+## 获取配置文件名称更改信息
+
+**需要访问令牌。**
+
+该方法返回一个元组，item1 是用户的配置文件名称更改的时间，item2 是用户的配置文件创建的时间，item3 是当前是否允许更改名称。
 
 ```cs
 var changeInfo = await MojangApiUtils.GetProfileNameChangeInfoAsync("access token");
 ```
 
-## Change username
+## 更改用户名
 
-**Needs access token.**
+**需要访问令牌。**
 
-Unbelievable, but you can literally change your Minecraft name with code:
+难以置信，但你就是可以用代码改变你的 Minecraft 名称：
 
 ```cs
 var newProfile = await MojangApiUtils.ChangeUsernameAsync("access token", "new name");
 ```
 
-?> this method returns new Minecraft profile after name changed.
+?> 此方法在名称更改后返回新的 Minecraft 配置文件。
 
-## Check if certain name is available to change to
+## 检查是否可以更改某个名称
 
-**Needs access token.**
+**需要访问令牌。**
 
 ```cs
 var isAvailable = await MojangApiUtils.CheckNameAvailabilityAsync("access token", "name");

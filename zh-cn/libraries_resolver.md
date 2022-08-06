@@ -1,37 +1,41 @@
-# LibrariesResolver
+# 库解析程序
 
-`LibrariesResolver` provides both static method and instanced method, you don't need to instance `LibrariesResolver` if you are convenient to get `MinecraftEntry`.
+`LibrariesResolver` 同时提供静态方法和实例方法，你不需要实例化 `LibrariesResolver` 如果你可以方便地获取到 `MinecraftEntry`。
 
-## Get libraries
+## 获取 Libraries
 
-Use `LibrariesResolver`:
+用途 `LibrariesResolver`：
+
 
 ```cs
 var libraries = LibrariesResolver.GetLibraries(minecraft);
 ```
 
-Use extension method for `MinecraftEntry`:
+使用扩展方法 `MinecraftEntry`：
+
 
 ```cs
 var libraries = minecraft.GetLibraries();
 ```
 
-## Consume
+## 用法
 
-This is a single `LibraryEntry`:
+这是一个单一的 `LibraryEntry`：
 
-- `File`: a `FileInfo` object of the library file.
-- `IsNative`: indicating if the entry is a native library, which needs to be extacted (of course you don't have to do it manually).
-- `Type`: what type of Minecraft this entry belongs to, there's might be different kind of libraries in a lis since a Forge or Fabric json of Minecraft missing some libraries.
-- `RelativeUrl`: a relative url of the library, you can combine it manually to get download url.
+- `File`： `FileInfo` 对象。指示库文件。
+- `IsNative`：布尔值。指示条目是否是需要提取的 Native库（当然，你不必手动提取）。
+- `Type`：枚举对象。指示此 Minecraft 条目属于什么类型，列表中可能会有不同类型的库，因为 Minecraft 的 Forge 或 Fabric json 缺少一些库。
+- `RelativeUrl`：库的相对 url，可以手动组合得到下载 url。
 
-You can grab download url:
+你可以抓取下载网址：
+
 
 ```cs
 var url = libraryEntry.GetDownloadUrl();
 ```
 
-Or specify other download source:
+或指定其他下载源：
+
 
 ```cs
 var url = libraryEntry.GetDownloadUrl(DownloadSource.Bmcl);
