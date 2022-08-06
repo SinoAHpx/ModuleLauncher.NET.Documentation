@@ -69,4 +69,4 @@ var process = await minecraft
     .LaunchAsync();
 ```
 
-!> `WithJava` 和 `WithJavas` 只需要 java exe 文件的路径，可能只适用于 Windows 。
+!> `WithJava` 和 `WithJavas` 只需要 java exe 文件的路径，但可能只适用于 Windows 。

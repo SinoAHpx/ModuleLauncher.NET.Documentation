@@ -1,18 +1,18 @@
 - 开始使用
-    - [开始之前](before_start.md)
-    - [安装](install.md)
-    - [术语](terminology.md)
-    - [初次启动](launch_first.md)
+    - [开始之前](/zh-cn/before_start.md)
+    - [安装](/zh-cn/install.md)
+    - [术语](/zh-cn/terminology.md)
+    - [初次启动](/zh-cn/launch_first.md)
 - 账号验证
-    - [MicrosoftAuthenticator](ms_authenticator.md)
-    - [OfflineAuthenticator](offline_authenticator.md)
+    - [MicrosoftAuthenticator](/zh-cn/ms_authenticator.md)
+    - [OfflineAuthenticator](/zh-cn/offline_authenticator.md)
 - 启动游戏
-    - [Launcher](launcher.md)
+    - [Launcher](/zh-cn/launcher.md)
 - 库和资源
-    - [LibrariesResolver](libraries_resolver.md)
-    - [AssetsResolver](assets_resolver.md)
+    - [LibrariesResolver](/zh-cn/libraries_resolver.md)
+    - [AssetsResolver](/zh-cn/assets_resolver.md)
 - 工具类
-    - [MojangApiUtils](mojang_api_utils.md)
-    - [SkinUtils](skin_utils.md)
-    - [DownloaderUtils](downloader_utils.md)
-    - [其它](other_utils.md)
+    - [MojangApiUtils](/zh-cn/mojang_api_utils.md)
+    - [SkinUtils](/zh-cn/skin_utils.md)
+    - [DownloaderUtils](/zh-cn/downloader_utils.md)
+    - [其它](/zh-cn/other_utils.md)

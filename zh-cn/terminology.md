@@ -16,7 +16,7 @@
                     - `natives`
                     - `1.19.jar`
                     - `1.19.json`
-- `MinecraftResolver`：库中的另一个重要内容，你可以 `MinecraftResolver` 使用..minecraft 路径初始化实例。这个类扮演的主要角色是用 Minecraft ID 创建 `MinecraftEntry` 的工厂。
+- `MinecraftResolver`：库中的另一个重要内容，你可以在 `MinecraftResolver` 使用 .minecraft 路径初始化实例。这个类扮演的主要角色是用 Minecraft ID 创建 `MinecraftEntry` 的工厂。
 - `Minecraft ID`：在上面的示例树中， `1.19` 是 `Minecraft ID`。一旦你有 `Minecraft ID` 了，你就可以 `MinecraftEntry` 使用来抓取 `MinecraftResolver`。
-- `LibraryResolver`：获取一个列表 `LibraryEntry`，表示目录中的文件 `libraries`，这是 Minecraft 的必要。
-- `AssetsResolver`：获取一个列表 `AssetEntry`，和上面一样，它代表目录中文件 `assets`。
+- `LibraryResolver`：获取一个 `LibraryEntry`的列表，表示目录中的文件 `libraries`，这是 Minecraft 的必要。
+- `AssetsResolver`：获取一个 `AssetEntry`的列表，和上面一样，它代表目录中文件 `assets`。
