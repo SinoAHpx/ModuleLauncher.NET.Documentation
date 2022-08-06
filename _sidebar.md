@@ -13,3 +13,6 @@
     - [AssetsResolver](/assets_resolver.md)
 - Utils
     - [MojangApiUtils](/mojang_api_utils.md)
+    - [SkinUtils](/skin_utils.md)
+    - [DownloaderUtils](/downloader_utils.md)
+    - [Ohter utils](/other_utils.md)
