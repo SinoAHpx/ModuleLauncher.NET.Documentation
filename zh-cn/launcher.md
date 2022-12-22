@@ -38,17 +38,14 @@ var launcher = new Launcher
     }
 };
 
-var process = await launcher.LaunchAsync("minecraft id");
+var process = await launcher.LaunchAsync("minecraft id",PipeTarget.Null);
 ```
 
-`LaunchAsync` 方法是一个异步的方法，所以你必须使用一个 `await` 修饰符来正确地调用它。它返回一个 `Process` 实例，显然是 Minecraft 的进程。你可以拿它来搞搞事儿，比如读一下它的输出：
+`LaunchAsync` 方法是一个异步的方法，所以你必须使用一个 `await` 修饰符来正确地调用它。它返回一个 `CommandResult` 实例，显然是 Minecraft 的进程。你可以拿它来搞搞事儿，比如读一下它的退出代码：
 
 
 ```cs
-while (!process.ReadOutputLine().IsNullOrEmpty())
-{
-    Console.WriteLine(process.ReadOutputLine());
-}
+Console.WriteLine(result.ExitCode));
 ```
 
 
@@ -66,7 +63,8 @@ var minecraft = minecraftResolver.GetMinecraft("Minecraft ID");
 var process = await minecraft
     .WithAuthentication("AHpx")
     .WithJava("Some java exe file")
-    .LaunchAsync();
+    .LaunchAsync(PipeTarget.Null);
 ```
 
 !> `WithJava` 和 `WithJavas` 只需要 java exe 文件的路径，但可能只适用于 Windows 。
+!> 如果你想要读取它的输出，只需要向上面那样传入你想要的 PipeTarget。

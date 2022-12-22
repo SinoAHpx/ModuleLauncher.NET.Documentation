@@ -24,11 +24,10 @@ Authentication and Java, is the only two value that required for launching Minec
 var process = await minecraft
     .WithAuthentication("AHpx")
     .WithJava("Some java exe file")
-    .LaunchAsync();
+    .LaunchAsync(PipeTarget.Null);
 
 // if you would like to check out the Minecraft outputs
-while (!process.ReadOutputLine().IsNullOrEmpty())
-{
-    Console.WriteLine(process.ReadOutputLine());
-}
+// you have to edit "PipeTarget.Null" to:
+// e.g. delegate or whatever you want, refer to https://github.com/Tyrrrz/CliWrap#piping
+    .LaunchAsync(PipeTarget.ToDelegate(s => { /* do something */ }))
 ```

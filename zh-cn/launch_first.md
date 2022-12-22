@@ -27,11 +27,9 @@ using ModuleLauncher.NET.Resources;
 var process = await minecraft
     .WithAuthentication("AHpx")
     .WithJava("Some java exe file")
-    .LaunchAsync();
+    .LaunchAsync(PipeTarget.Null);
 
-// 如果你想检视Minecraft进程的输出信息
-while (!process.ReadOutputLine().IsNullOrEmpty())
-{
-    Console.WriteLine(process.ReadOutputLine());
-}
+// 如果你想要处理 Minecraft 启动之后的输出信息，请改动 PipeTarget.Null
+// 比如，用一个 Action 来处理输出, 请参考： https://github.com/Tyrrrz/CliWrap#piping
+    .LaunchAsync(PipeTarget.ToDelegate(s => { /* do something */ }))
 ```

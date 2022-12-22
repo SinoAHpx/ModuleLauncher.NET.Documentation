@@ -37,20 +37,23 @@ var launcher = new Launcher
     }
 };
 
-var process = await launcher.LaunchAsync("minecraft id");
+var result = await launcher.LaunchAsync("minecraft id", PipeTarget.Null);
 ```
 
-`LaunchAsync` method is an asynchronous method as you can see, so you have to use an `await` modifier to corretly invoke it. It returns a `Process` instance, is certainly the process of Minecraft, you can do something with it, for an example, read its output:
+`LaunchAsync` method is an asynchronous method as you can see, so you have to use an `await` modifier to corretly invoke it. It returns a `CommandResult` instance, is certainly the process of Minecraft, you can do something with it, for an example, get its exit code:
 
 ```cs
-while (!process.ReadOutputLine().IsNullOrEmpty())
-{
-    Console.WriteLine(process.ReadOutputLine());
-}
+Console.WriteLine(result.ExitCode));
 ```
 
+In the version above `4.0.7`, ModuleLauncher uses `CliWrap` instead of native `Process`, so you have to make some change to read the Minecraft output lines, just change `PipeTarget.Null` above to whatever you want that [CliWrap](https://github.com/Tyrrrz/CliWrap#piping) supported. For example, use an `Action` to receive the output:
 
-?> `ReadOutputLine` here is provided by the library `Manganese`, you may using namespaces or use native .NET library instead.
+```cs
+var process = await minecraft
+    .WithAuthentication("AHpx")
+    .WithJava("Some java exe file")
+    .LaunchAsync(PipeTarget.ToDelegate(s => { /* do something */ }));
+```
 
 ## Method chain
 
@@ -63,7 +66,9 @@ var minecraft = minecraftResolver.GetMinecraft("Minecraft ID");
 var process = await minecraft
     .WithAuthentication("AHpx")
     .WithJava("Some java exe file")
-    .LaunchAsync();
+    .LaunchAsync(PipeTarget.Null);
 ```
 
 !> `WithJava` and `WithJavas` procedures that only need file path of java exe file may only work on Windows.
+
+!> To read the output, it is same as above, just pass a `PipeTarget` instance
